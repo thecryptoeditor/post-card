@@ -6,8 +6,9 @@ function CreatePost() {
 
     const [post, setPost] = useState(``);
 
+    const [viewAll, setViewAll] = useState(``);
+
     const textareahandler = (event) => {
-        console.log(event.target.value);
         setPost(event.target.value);
     }
 
@@ -20,6 +21,21 @@ function CreatePost() {
         localStorage.setItem(`post${incrementedVal}`, post);
         localStorage.setItem('postcount', incrementedVal);
 
+        setPost(``);
+
+    }
+
+    const deleteOnePostHandler = (event) => {
+
+        let totalPost = localStorage.getItem('postcount');
+
+        localStorage.removeItem(`post${totalPost}`)
+        localStorage.setItem('postcount', totalPost-1);
+
+    }
+
+    const viewAllHandler = () => { 
+        setViewAll(localStorage.getItem('postcount'));
     }
 
     const headerStyle = {
@@ -50,13 +66,13 @@ function CreatePost() {
                 <div className='buttons'>
                     <button onClick={postHandler}>Post</button>
                     <button onClick={() => setPost(``)}>Reset</button>
-                    <button>View all posts</button>
-                    <button>Delete one posts</button>
-                    <button >Delete all posts</button>
+                    <button onClick={viewAllHandler}>View all posts</button>
+                    <button onClick={deleteOnePostHandler}>Delete one posts</button>
+                    <button onClick={() => localStorage.clear()}>Delete all posts</button>
                 </div>
             </div>
 
-            <DisplayPost />
+            <DisplayPost props={viewAll} />
 
         </div>
     )

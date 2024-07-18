@@ -1,28 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
 
-function DisplayPost() {
+function DisplayPost({props}) {
 
-    let listOfPost = [
-        { title: '1lorem ipsum dolor sit amet, consectetur adip'},
-        { title: '2lorem ipsum dolor sit amet, consectetur adip'},
-        { title: '3lorem ipsum dolor sit amet, consectetur adip'},
-        { title: '4lorem ipsum dolor sit amet, consectetur adip'}
-    ];
+    const [counter, setCounter] = useState(Number);
+    const [content, setContent] = useState(null);
 
-  return (
-    <div>
-        <div className='listOfPost'>
-            <p>Here is the all the posts: </p>
-            {listOfPost.map((i, idx) => {
+    useEffect(() => {
 
+        let lng = localStorage.getItem('postcount') || 0;
+        console.log(lng)
+        
+        for (let i = 1; i <= lng; i++ ) {
+            setCounter(i);
+            setContent(localStorage.getItem(`post${i}`));
+        }
 
+    }, [props]);
 
-                return <Card key={idx} title={`Post: ${idx + 1}`} content={i.title} />
-            })}
+    return (
+        <div>
+            <div className='listOfPost'>
+                <p>Here is the all the posts: </p>
+
+                { counter > 0 ? 
+                    <Card key={counter} title={`Post: ${counter}`} content={content} />
+                    : <p>No post available</p>
+                }
+            </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default DisplayPost;
