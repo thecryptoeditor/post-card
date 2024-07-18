@@ -1,7 +1,9 @@
+import CreatePost from "./components/CreatePost";
+
 function App() {
     return (
         <div className="App">
-
+            <CreatePost/>
         </div>
     );
 }
