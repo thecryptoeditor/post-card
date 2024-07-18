@@ -6,7 +6,7 @@ function CreatePost() {
 
     const [post, setPost] = useState(``);
 
-    const [viewAll, setViewAll] = useState(``);
+    const [viewed, setViewAll] = useState(``);
 
     const textareahandler = (event) => {
         setPost(event.target.value);
@@ -30,11 +30,11 @@ function CreatePost() {
         let totalPost = localStorage.getItem('postcount');
 
         localStorage.removeItem(`post${totalPost}`)
-        localStorage.setItem('postcount', totalPost-1);
+        localStorage.setItem('postcount', totalPost - 1);
 
     }
 
-    const viewAllHandler = () => { 
+    const viewAllHandler = () => {
         setViewAll(localStorage.getItem('postcount'));
     }
 
@@ -72,7 +72,7 @@ function CreatePost() {
                 </div>
             </div>
 
-            <DisplayPost props={viewAll} />
+            <DisplayPost viewed={viewed} />
 
         </div>
     )
