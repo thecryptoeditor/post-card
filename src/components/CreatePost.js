@@ -21,6 +21,8 @@ function CreatePost() {
         localStorage.setItem(`post${incrementedVal}`, post);
         localStorage.setItem('postcount', incrementedVal);
 
+        setViewAll(incrementedVal)
+
         setPost(``);
 
     }
@@ -31,7 +33,13 @@ function CreatePost() {
 
         localStorage.removeItem(`post${totalPost}`)
         localStorage.setItem('postcount', totalPost - 1);
+        setViewAll(totalPost - 1)
 
+    }
+
+    const deleteAllPostHandler = (event) => { 
+        localStorage.clear();
+        setViewAll(0)
     }
 
     const viewAllHandler = () => {
@@ -68,7 +76,7 @@ function CreatePost() {
                     <button onClick={() => setPost(``)}>Reset</button>
                     <button onClick={viewAllHandler}>View all posts</button>
                     <button onClick={deleteOnePostHandler}>Delete one posts</button>
-                    <button onClick={() => localStorage.clear()}>Delete all posts</button>
+                    <button onClick={deleteAllPostHandler}>Delete all posts</button>
                 </div>
             </div>
 

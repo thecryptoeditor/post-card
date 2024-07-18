@@ -17,7 +17,7 @@ function DisplayPost({ viewed }) {
 
         setLoop(initialArr);
 
-    }, [localStorage.getItem('postcount')]);
+    }, [viewed]);
 
     return (
         <div>
