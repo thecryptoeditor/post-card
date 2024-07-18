@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import '../style.css'
+import DisplayPost from './DisplayPost';
 
 function CreatePost() {
 
@@ -50,8 +51,13 @@ function CreatePost() {
                     <button onClick={postHandler}>Post</button>
                     <button onClick={() => setPost(``)}>Reset</button>
                     <button>View all posts</button>
+                    <button>Delete one posts</button>
+                    <button >Delete all posts</button>
                 </div>
             </div>
+
+            <DisplayPost />
+
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card';
 
 function DisplayPost() {
 
@@ -14,10 +15,10 @@ function DisplayPost() {
         <div className='listOfPost'>
             <p>Here is the all the posts: </p>
             {listOfPost.map((i, idx) => {
-                <div className='card'>
-                    Post: {idx+1}
-                    <p>{i.title}</p>
-                </div>
+
+
+
+                return <Card key={idx} title={`Post: ${idx + 1}`} content={i.title} />
             })}
         </div>
     </div>
